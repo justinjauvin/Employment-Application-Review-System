@@ -1,0 +1,85 @@
+<html xmlns:th="https://thymeleaf.org">  
+<html lang="en"> 
+<head>
+    <meta charset="utf-8">
+    <title>Home</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <nav>
+        <figure class="thumbnail">
+            <a id="icon" >
+                <img src="images/icon.jpg" alt="AlgomaU">
+            </a>
+        </figure>
+        <li><a th:if=${!user.getAdmin()} href="home">Home</a></li>
+        <li><a th:if=${user.getAdmin()} href="adminHome">Home</a></li>
+        <li><a th:if=${!user.getAdmin()} href="search">Search</a></li>
+        <li><a href="profile">Profile</a></li>
+        <li><a th:if="${user.getAdmin()}" href="newapplication">New Applicant</a></li>
+        <div id="break"><p></p></div>
+        <li><a href="logout">Logout</a></li>
+    </nav>
+    <br>
+    <header>
+             <figure class="thumbnail">
+                <img src="images/eagle-icon.png" alt="AlgomaU">
+            </figure>
+            <h1>Update Profile</h1>
+    </header>
+   
+    <main>
+        <form action="profile" method="post">
+            <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/></div>
+            <h2>User Information</h2>
+            
+            <div>
+                <li>
+                <label for="firstName">First Name: </label>  
+                <input type="text" name="firstName" th:placeholder="${user.getFirstName()}" id="fname"></input>
+                </li>
+
+                <li>
+                <label for="lastName">Last Name: </label>  
+                <input type="text" name="lastName" th:placeholder="${user.getLastName()}" id="lname"></input>
+                </li>
+
+                <li>
+                    <label for="username">Username: </label>
+                    <input type="text" name="username" th:placeholder="${user.username}" id="username"></input>
+                </li>
+
+                <li>
+                <label for="email">Email: </label>
+                <input type="text" name="email" th:placeholder="${user.email}" id="email"></input>
+                </li>
+
+            </div>
+
+            <h2>Password Reset</h2>
+            <div>
+                <li>
+                <label for="oldPassword">Old Password: </label>
+                <input type="password" name="oldPassword" id="oldPassword"></input>
+                </li>
+
+                <li>
+                <label for="newPassword">New Password: </label>
+                <input type="password" name="newPassword" id="newPassword"></input>
+                </li>
+
+                <li>
+                <label for="confirmPassword">Confirm Password: </label>
+                <input type="password" name="confirmPassword" id="confirmPassword"></input>
+                </li>
+            </div>
+            <div>
+               <input type="submit" value="Update"></input> 
+            </div>
+
+        </form>
+    </main>
+</body>  
+</html>

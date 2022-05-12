@@ -1,0 +1,106 @@
+<html xmlns:th="https://thymeleaf.org">  
+
+<head>
+    <meta charset="utf-8">
+    <title>Home</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+    <nav>
+        <figure class="thumbnail">
+            <a id="icon" href="home">
+                <img src="images/icon.jpg" alt="AlgomaU">
+            </a>
+        </figure>
+        <li><a th:if=${!user.getAdmin()} href="home">Home</a></li>
+        <li><a th:if=${user.getAdmin()} href="adminHome">Home</a></li>
+        <li><a th:if=${!user.getAdmin()} href="search">Search</a></li>
+        <li><a href="profile">Profile</a></li>
+        <li><a th:if="${user.getAdmin()}" href="newapplication">New Applicant</a></li>
+        <div id="break"><p></p></div>
+        <li><a href="/">Logout</a></li>
+    </nav>
+
+    <main>
+        <header>
+            <figure class="thumbnail">
+                <img src="images/eagle-icon.png" alt="AlgomaU">
+            </figure>
+            <div>
+                <h1 th:text="'Hello, ' + ${user.getFirstName()} + '.'"></h1>
+                <p>Welcome to Algoma Universitiy's Employment Applicant Review System.</p>
+                <p>Here's what you missed while you were away.</p>   
+            </div>
+ 
+        </header>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <form method="post">
+                    <th>
+                        Last Name
+                        <button type="submit" name="sortVal" value="lNameAsc" >▲</button>
+                        <button type="submit" name="sortVal" value="lNameDesc">▼</button>
+                    </th>
+
+                    <th>First Name
+                        <button type="submit" name="sortVal" value="fNameAsc">▲</button>
+                        <button type="submit" name="sortVal" value="fNameDesc">▼</button>
+                    </th>
+
+                    <th>Role
+                        <button type="submit" name="sortVal" value="roleAsc">▲</button>
+                        <button type="submit" name="sortVal" value="roleDesc">▼</button>
+                    </th>
+
+                    <th>Committee
+                        <button type="submit" name="sortVal" value="committeeAsc">▲</button>
+                        <button type="submit" name="sortVal" value="committeeDesc">▼</button>
+                    </th>
+
+                    <th>Start Date
+                        <button type="submit" name="sortVal" value="startAsc">▲</button>
+                        <button type="submit" name="sortVal" value="startDesc">▼</button>
+                    </th>
+
+                    <th>End Date
+                        <button type="submit" name="sortVal" value="endAsc">▲</button>
+                        <button type="submit" name="sortVal" value="endDesc">▼</button>
+                    </th>
+
+                    <th>Comments
+                        <button type="submit" name="sortVal" value="commentsAsc">▲</button>
+                        <button type="submit" name="sortVal" value="commentsDesc">▼</button>
+                    </th>
+
+                    <th>Application Status</th>
+
+                    <th>Flagged</th>
+                    </form>
+                </tr>
+            </thead>
+            <tbody>
+                    <h2>Recently updated applications</h2>
+                    <tr th:each="app : ${applications}">
+                        <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getLastName()}"></a></td>
+                        <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getFirstName()}"></a></td>
+                        <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getRole()}"></a></td>
+                        <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getCommittee()}"></a></td>
+                        <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getStartDate()}"></a></td>
+                        <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getEndDate()}"></a></td>
+                        <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getTotalComments()} + ' (' + ${app.getNewComments()} + ')' "></a></td>
+                        <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getAppStatus()}"></a></td>
+                        <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.flagged}"></a></td>
+                    </tr>  
+                </tr>  
+            </tbody>
+        </table>
+    </main>
+</body>
+
+</html>

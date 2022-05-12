@@ -1,0 +1,130 @@
+<!-- Megan Chamberlin - 2022 -->
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">  
+<html lang="en"></html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/basic.css">
+  <link rel="stylesheet" href="/css/adminHome.css">
+</head>
+
+<body>
+    <nav>
+        <figure class="thumbnail">
+            <a id="icon" href="home">
+                <img src="images/icon.jpg" alt="AlgomaU">
+            </a>
+        </figure>
+        <li><a th:if=${!user.getAdmin()} href="home">Home</a></li>
+        <li><a th:if=${user.getAdmin()} href="adminHome">Home</a></li>
+        <li><a th:if=${!user.getAdmin()} href="search">Search</a></li>
+        <li><a href="profile">Profile</a></li>
+        <li><a th:if="${user.getAdmin()}" href="newapplication">New Applicant</a></li>
+        <div id="break"><p></p></div>
+        <li><a href="logout">Logout</a></li>
+    </nav>
+
+    <main>
+        <header>
+            <figure class="thumbnail">
+                <img src="images/eagle-icon.png" alt="AlgomaU">
+            </figure>
+            <div>
+                <h1 th:text="'Hello, ' + ${user.getFirstName()} + '.'"></h1>
+                <p>Welcome to Algoma Universitiy's Employment Applicant Review System.</p>
+            </div>
+            <br>
+        </header>
+
+        <div id="search">
+        <h3>Invite new users:</h3>
+       
+        <form class="emailForm">
+            <tr>
+                <td><input type="text" th:name="email" id="email" placehold="email@email.com"></input></td>
+            </tr>
+            <td><input type="submit" value="Send Link"></input></td>
+        </form>
+        
+
+        <h3>View accounts and adjust permissions</h3>
+
+        <form method="post">
+            
+                <div id="search_bar">
+                    <tr>
+                        <td><input type="text" name="search" placeholder="Search ..."></input></td>
+                        <td><input type="submit" value="Search"></input></td>
+                    </tr>
+                </div>
+
+                <div id="search_rb">
+                    <label>Search by:</label>
+                    <input type="radio" name="searchFilter" value="lastName" id="name" checked>
+                    <label for="name">Last Name</label>
+                    <input type="radio" name="searchFilter" value="firstName" id="firstName" checked>
+                    <label for="name">First Name</label>
+                    <input type="radio" name="searchFilter" value="email" id="emailFilter">
+                    <label for="name">Email</label>
+                </div>
+        </form>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <form method="post">
+                    <th>
+                        Last Name
+                        <button type="submit" name="sortVal" value="lNameAsc" >▲</button>
+                        <button type="submit" name="sortVal" value="lNameDesc">▼</button>
+                    </th>
+
+                    <th>First Name
+                        <button type="submit" name="sortVal" value="fNameAsc">▲</button>
+                        <button type="submit" name="sortVal" value="fNameDesc">▼</button>
+                    </th>
+
+                    <th>Email
+                        <button type="submit" name="sortVal" value="emailAsc">▲</button>
+                        <button type="submit" name="sortVal" value="emailDesc">▼</button>
+                    </th>
+                    <th>Current Permission</th>
+
+                    <th>Set Permissions</th>
+
+                    <th>Delete Account</th>
+                </form>
+            </tr>
+            </thead>
+            <tbody>
+            <h2>View users and adjust permissions</h2>
+            <tr th:each="user : ${users}">
+                <td><p th:text="${user.getLastName()}"></p></td>
+                <td><p th:text="${user.getFirstName()}"></p></td>
+                <td><p th:text="${user.getEmail()}"></p></td>
+                <td><p th:text="${user.getRoles()}"></p></td>
+                <td>
+                    <form class="dropdown" role="form" method="post">
+                        <select class="form-control" name="action">
+                            <option disabled selected>Select</option>
+                            <option th:value="chair + ','  + ${user.getId()}">Faculty/Chair</option>
+                            <option th:value="admin + ',' + ${user.getId()}">Admin</option>
+                            <option th:value="member+ ',' + ${user.getId()}">Committee Member</option>
+                        </select>
+                        <button class="dropbtn" type="submit">Submit</button>
+                    </form>
+                </td>
+                <form method="post">
+                    <input type="hidden" name="delete" th:value="delete + ',' + ${user.getId()}"></input>
+                    <td><button type="submit">Delete</button></td>
+                </form>
+
+            </tr>
+            </tr>
+            </tbody>
+        </table>
+
+    </main>

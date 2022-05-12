@@ -1,0 +1,98 @@
+header{
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start; 
+}
+
+header figure{
+    max-width: 300px;
+}
+header img{
+	width: 100%;
+}
+
+#search{
+	margin-left: 15%;
+}
+#search_rb{
+	margin-left: 10%;
+	font-size: .7em;
+}
+
+main{
+    padding: 10px 100px;
+}
+
+table, td, tr, th{
+  border: 2px solid black;
+  border-collapse: collapse;
+  margin: 0;
+  padding:5px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+table{
+	min-width: 1000px;
+    width: 100%;
+	font-size: 20px;
+	background-color: white;
+}
+
+thead{
+    background-color: #b3282d;
+    color: white;
+}
+
+button{
+    border:none;
+    background-color: #b3282d;
+}
+
+button:hover{
+    background-color: #8f2024;
+}
+
+.emailForm input[type=text]{
+	position: relative;
+	width: 700px;
+	height: 40px;
+	margin: 0%;
+	border:0%;
+	font-size: 20px;
+	border-radius: 10px 0px 0px 10px;
+
+}
+.emailForm input[type=submit]{
+	height: 46px;
+	width: 100px;
+	position: absolute;
+	border: none;
+	background-color: #b3282d;
+	color: white;
+	margin: 0%;
+	border:0%;
+	border-radius: 0px 10px 10px 0px;
+}
+
+#search_bar input[type=text]{
+	position: relative;
+	width: 700px;
+	height: 40px;
+	margin: 0%;
+	border:0%;
+	font-size: 20px;
+	border-radius: 10px 0px 0px 10px;
+
+}
+#search_bar input[type=submit]{
+	height: 46px;
+	width: 100px;
+	position: absolute;
+	border: none;
+	background-color: #b3282d;
+	color: white;
+	margin: 0%;
+	border:0%;
+	border-radius: 0px 10px 10px 0px;
+}

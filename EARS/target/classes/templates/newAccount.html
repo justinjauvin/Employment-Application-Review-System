@@ -1,0 +1,64 @@
+<html xmlns:th="https://thymeleaf.org">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>New Account</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/basic.css">
+    </head>
+<body>
+
+<h1>New Account Creation</h1>
+<div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
+<form action="/newAccount" method="post">
+    <table>  
+    <tr>  
+        <td><label for="username">Username: </label></td>  
+        <td><input type="text" name="username"></input></td>  
+    </tr>
+
+    <br>
+    
+    <tr>  
+        <td><label for="password">Password: </label></td>  
+        <td><input type="text" name="password"></input></td>  
+    </tr> 
+
+    <tr>  
+        <td><label for="confirmPassword">Confirm Password: </label></td>  
+        <td><input type="text" name="confirmPassword"></input></td>  
+    </tr> 
+
+    <br>
+
+    <tr>  
+        <td><label for="email">Email: </label></td>  
+        <td><input type="text" name="email"></input></td>  
+    </tr>
+
+    <tr>  
+        <td><label for="roles">Position: </label></td>  
+        <td><input type="text" name="roles"></input></td>  
+    </tr>
+
+    <tr>  
+        <td><label for="fname">First Name: </label></td>  
+        <td><input type="text" name="fname"></input></td>  
+    </tr>
+    
+    <tr>  
+        <td><label for="lname">Last Name: </label></td>  
+        <td><input type="text" name="lname"></input></td>  
+    </tr>
+
+    <tr>  
+    <td></td>  
+    <td><button type="submit" value="Create Account">Submit</button></td>
+    </tr>  
+    </table>
+</form>
+
+<a href="/">Login</a>
+
+</body>  
+</html>

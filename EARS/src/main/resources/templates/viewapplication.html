@@ -1,0 +1,91 @@
+<html xmlns:th="https://thymeleaf.org">
+    
+<head>
+    <meta charset="utf-8">
+    <title>View Applications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/view.css">
+</head>
+
+<body>
+    
+    <nav>
+        <figure class="thumbnail">
+           <a id="icon" href="home">
+                <img src="/images/icon.jpg" alt="AlgomaU">
+            </a>
+        </figure>
+        <li><a th:if=${!user.getAdmin()} href="/home">Home</a></li>
+        <li><a th:if=${user.getAdmin()} href="/adminHome">Home</a></li>
+        <li><a th:if=${!user.getAdmin()} href="/search">Search</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a th:if="${user.getAdmin()}" href="/newapplication">New Applicant</a></li>
+        <div id="break"><p></p></div>
+        <li><a href="/logout">Logout</a></li>
+    </nav>
+
+       <header>
+            <figure class="thumbnail">
+                <img src="/images/eagle-icon.png" alt="AlgomaU">
+            </figure>
+            <h1>View Application</h1>
+
+           <form class="dropdown" role="form"  method="post">
+               <select class="form-control" name="action">
+                   <option disabled selected>Action</option>
+                   <option class="dropdown-content" th:if="${user.canHire()}" value="hired" >Select Candidate</option>
+                   <option class="dropdown-content" th:if="${user.canHire()}" value="rejected" >Reject Candidate</option>
+                   <option class="dropdown-content" value="flagged">Flag for Further Review</option>
+               </select>
+               <button class="dropbtn" type="submit">Submit</button>
+           </form>
+
+        </header>
+
+    <main>
+        <div id="applicant_info" class="scroller">
+            <h4>Applicant Name: </h4>
+            <p th:text="${app.getFirstName()} + ' ' + ${app.getLastName()}"></p>
+
+            <h4>Role: </h4>
+            <p th:text="${app.getRole()}"></p>
+
+            <h4>Education History: </h4>
+            <p th:text="${app.getEducation()}"></p>
+
+            <h4>Work History: </h4>
+            <p th:text="${app.getWork()}"></p>
+
+            <h4>Skills: </h4>
+            <p th:text="${app.getSkills()}"></p>
+
+            <h4>flagged: </h4>
+            <p th:text="${app.getFlagged()}"></p>
+
+            <h4>application status: </h4>
+            <p th:text="${app.getAppStatus()}"></p>
+        </div>
+
+        <div id="comments">
+            <h1>Comments</h1>
+
+            <form id="comment_box" method="post">
+                <textarea class="comment" name="comment" placeholder="type your comment here..."></textarea>
+                <br>
+                <input type="submit" value="Submit"></input>
+            </form>
+           
+            <tr th:each="comment : ${comments}">
+                <div id="remark">
+                <h4 th:text="${comment.fname} + ' ' + ${comment.lname} + ' posted at: ' + ${comment.getTime()}"></h4>
+                <p th:text="${comment.comment}"></p>
+                </div>
+                <br>
+            </tr>
+            
+
+        </div>
+    </main>
+</body>
+</html>

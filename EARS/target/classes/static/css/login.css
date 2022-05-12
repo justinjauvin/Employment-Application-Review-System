@@ -1,0 +1,105 @@
+/*Megan Chamberlin -2022*
+css for login page*/
+
+body{
+	margin-top: 50px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+header{
+	margin: 20px;
+    display: flex;
+    align-items: center;
+}
+header img{
+    max-height:150px;
+    width:auto;
+}
+header h1{
+	font-size: 2em;
+	margin: 0%;
+	white-space: nowrap;
+}
+main{
+	margin: 60px;
+	padding: 40px;
+	display: flex;
+	align-items: center;
+	border-style: solid;
+	flex-direction: column;
+}
+
+input{
+	height: 40px;
+	width: 300px;
+	font-size: 1.5em;
+}
+
+label{
+	display: inline-block;
+	width:110px;
+	text-align: right;
+	padding-right:30px;
+	white-space: nowrap;
+	font-size: 1.5em;
+}
+
+main div{
+	font-size: 1em;
+}
+form input[type=submit]{
+	margin-top: 20px;
+	border: none;
+	background-color: #b3282d;
+	height: 60px;
+	width: 150px;
+	color: white;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+button{
+    border:none;
+    background-color: #b3282d;
+    padding: 10px;
+    color:white;
+}
+
+button:hover{
+    background-color: #8f2024;
+}
+
+.db{
+	font-size: 0.5em;
+}
+
+.dbRB{
+	padding:0px;
+	margin:0px;
+	width:15px;
+	height:15px;
+}
+
+.dbLabel{
+	width:fit-content;
+	padding-right:5px;
+}
+
+.dbNote{
+	font-size:0.5em;
+}
+
+.forgotPasswordLabel{
+    display:contents;
+}
+
+.forgotPasswordInput{
+    width:300px;
+}
+
+#forgotPasswordSubmit{
+    width:auto;
+    font-size:1em;
+}

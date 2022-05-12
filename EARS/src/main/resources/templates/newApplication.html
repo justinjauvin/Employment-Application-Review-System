@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">  
+<html lang="en"></html>
+
+<head>
+  <meta charset="utf-8">
+  <title>New Candidate Submission Form</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/basic.css">
+  <link rel="stylesheet" href="/css/profile.css">
+</head>
+
+<body>
+  <nav>
+    <figure class="thumbnail">
+      <a id="icon">
+        <img src="images/icon.jpg" alt="AlgomaU">
+      </a>
+    </figure>
+    <li><a th:if=${!user.getAdmin()} href="home">Home</a></li>
+    <li><a th:if=${user.getAdmin()} href="adminHome">Home</a></li>
+    <li><a th:if=${!user.getAdmin()} href="search">Search</a></li>
+    <li><a href="profile">Profile</a></li>
+    <li><a th:if="${user.getAdmin()}" href="newapplication">New Applicant</a></li>
+    <div id="break"><p></p></div>
+    <li><a href="logout">Logout</a></li>
+  </nav>
+  <br>
+  
+  <header>
+    <figure class="thumbnail">
+        <img src="images/eagle-icon.png" alt="AlgomaU">
+    </figure>
+    <h1 id="title">New Candidate Submission Form</h1>
+  </header>
+
+  <main>
+    
+    <form id="survey-form" method="POST">
+      <div>
+        <p id="description">Submit a new candidate's details here.</p>
+      </div>
+
+      <li>
+        <label class="leftarea" id="fNameLabel">First Name</label>
+        <input type="text" th:name="fname" id="fName" placeholder="enter your name" class="rightarea" required>
+      </li>
+
+      <li>
+        <label class="leftarea" id="lNameLabel">Last Name</label>
+        <input type="text" th:name="lname" id="lName" placeholder="enter your name" class="rightarea" required>
+      </li>
+      
+      <li>
+        <label class="leftarea" id="role-label" for="role"> Role </label>
+        <input type="text" th:name="role" placeholder="Enter role" required class="rightarea" id="role">
+      </li>
+
+      <li>
+        <label class="leftarea" id="committee-label" for="committee"> Committee </label>
+        <input type="text" th:name="committee" placeholder="Enter committee" required class="rightarea" id="committee">
+      </li>
+      
+      <li>
+        <label class="leftarea" id="startDate-label" for="startDate"> Start Date </label>
+        <input type="text" th:name="startDate" placeholder="MM/DD/YY" required class="rightarea" id="startDate">
+      </li>
+      
+      <li>
+        <label class="leftarea" id="endDate-label" for="endDate"> End Date </label>
+        <input type="text" th:name="endDate" placeholder="MM/DD/YY" required class="rightarea" id="endDate">
+      </li>
+      
+      <li>
+        <label class="leftarea" id="email-label" for="email"> Email </label>
+        <input type="text" th:name="email" placeholder="Email" required class="rightarea" id="email">
+      </li>
+      
+      <li>
+        <label class="leftarea" id="education-label" for="education"> Education </label>
+        <input type="text" th:name="education" placeholder="Enter education history" required class="rightarea" id="education">
+      </li>
+      
+      <li>
+        <label class="leftarea" id="work-label" for="work"> Work History </label>
+        <input type="text"th:name="work" placeholder="Enter work history" required class="rightarea" id="work"></input>
+      </li>
+      
+      <li>
+        <label class="leftarea" id="skill-label" for="education"> Skills </label>
+        <input type="text" th:name="skills" placeholder="Enter special skills" required class="rightarea" id="skills">
+      </li>
+      
+      <div>
+        <input type="submit" cursor="pointer"></input>
+      </div>
+
+    </form>
+  </main>
+
+
+</body>
+</html>

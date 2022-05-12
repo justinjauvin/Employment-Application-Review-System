@@ -1,0 +1,120 @@
+<html xmlns:th="https://thymeleaf.org">  
+
+<head>
+    <meta charset="utf-8">
+    <title>Search</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/search.css">
+</head>
+
+<body>
+    <nav>
+        <figure class="thumbnail">
+            <a id="icon" href="home">
+                <img src="images/icon.jpg" alt="AlgomaU">
+            </a>
+        </figure>
+            <li><a th:if=${!user.getAdmin()} href="home">Home</a></li>
+            <li><a th:if=${user.getAdmin()} href="adminHome">Home</a></li>
+            <li><a th:if=${!user.getAdmin()} href="search">Search</a></li>
+            <li><a href="profile">Profile</a></li>
+            <li><a th:if="${user.getAdmin()}" href="newapplication">New Applicant</a></li>
+            <div id="break"><p></p></div>
+            <li><a href="logout">Logout</a></li>
+    </nav>
+    <br>
+
+    <header>
+        <figure class="thumbnail">
+            <img src="images/eagle-icon.png" alt="AlgomaU">
+        </figure>
+        <h2>Search Candidates</h2>
+    </header>
+
+    <form action="search" method="post">
+        <header>
+            <div id="search_bar">
+            <tr>   
+                <td><input type="text" name="search" placeholder="Search ..."></input></td>
+                <td><input type="submit" value="Search"></input></td>    
+            </tr>
+            </div> 
+
+            <div id="search_rb">
+                <label>Search by:</label>
+                <input type="radio" name="searchFilter" value="lastName" id="lastName" checked>
+                <label for="lastName">Last Name</label>
+                <input type="radio" name="searchFilter" value="firstName" id="firstName" checked>
+                <label for="firstName">First Name</label>
+                <input type="radio" name="searchFilter" value="role" id="role">
+                <label for="role">Role</label>
+                <input type="radio" name="searchFilter" value="committee" id="committee">
+                <label for="committee">Committee</label>
+                <input type="radio" name="searchFilter" value="startDate" id="start_date">
+                <label for="start_date">Start Date</label>
+                <input type="radio" name="searchFilter" value="endDate" id="end_date">
+                <label for="end_date">End Date</label>
+                <input type="radio" name="searchFilter" value="email" id="email">
+                <label for="email">Email</label>
+            </div>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <form method="post">
+                            <th>
+                                Last Name
+                                <button type="submit" name="sortVal" value="lNameAsc" >▲</button>
+                                <button type="submit" name="sortVal" value="lNameDesc">▼</button>
+                            </th>
+
+                            <th>First Name
+                                <button type="submit" name="sortVal" value="fNameAsc">▲</button>
+                                <button type="submit" name="sortVal" value="fNameDesc">▼</button>
+                            </th>
+
+                            <th>Role
+                                <button type="submit" name="sortVal" value="roleAsc">▲</button>
+                                <button type="submit" name="sortVal" value="roleDesc">▼</button>
+                            </th>
+
+                            <th>Committee
+                                <button type="submit" name="sortVal" value="committeeAsc">▲</button>
+                                <button type="submit" name="sortVal" value="committeeDesc">▼</button>
+                            </th>
+
+                            <th>Start Date
+                                <button type="submit" name="sortVal" value="startAsc">▲</button>
+                                <button type="submit" name="sortVal" value="startDesc">▼</button>
+                            </th>
+
+                            <th>End Date
+                                <button type="submit" name="sortVal" value="endAsc">▲</button>
+                                <button type="submit" name="sortVal" value="endDesc">▼</button>
+                            </th>
+                            <th>Application Status</th>
+                            <th>Flagged</th>
+                        </form>
+                    </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="app : ${applications}">
+                    <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getLastName()}"></a></td>
+                    <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getFirstName()}"></a></td>
+                    <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getRole()}"></a></td>
+                    <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getCommittee()}"></a></td>
+                    <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getStartDate()}"></a></td>
+                    <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getEndDate()}"></a></td>
+                    <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" text="Comment count here"></a></td>
+                    <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getAppStatus()}"></a></td>
+                    <td><a th:href="@{viewapplication/{id}(id=${app.getid()})}" th:text="${app.getFlagged()}"></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
+    </form>  
+</body>  
+</html>

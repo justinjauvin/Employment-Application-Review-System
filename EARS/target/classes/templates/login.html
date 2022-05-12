@@ -1,0 +1,68 @@
+<html xmlns:th="https://thymeleaf.org">
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/basic.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" type="image/ico" th:href="@{/logo.ico}">
+</head>
+
+<body>
+
+    <nav>
+        <figure class="thumbnail">
+            <img src="images/icon.jpg" alt="AlgomaU">
+        </figure>
+    </nav>
+
+     <header>
+        <figure class="thumbnail">
+            <img src="images/eagle-icon.png" alt="AlgomaU">
+        </figure>
+        <div>
+            <h1>Algoma University's</h1>
+            <h1>Electronic Application Review System </h1>
+        </div>
+       </header>
+    <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
+    <main> 
+        <form method="post">
+            <table>  
+                
+                <tr>  
+                    <td><label for="username">Username: </label></td>  
+                    <td><input type="text" th:name="username" id="username"></input></td>
+                </tr>  
+
+                    <tr>  
+                    <td><label for="password">Password: </label></td>  
+                    <td><input type="password" th:name="password" id="password"></input></td>
+                    </tr> 
+
+                    <tr>  
+                    <td></td>  
+                    <td><input type="submit" value="Submit"></input></td> 
+                </tr>  
+            </table>
+        </form>  
+        <div>
+         <a href="forgotpassword">Forgot Password?</a>
+        </div>
+    </main>
+
+    <p class="dbNote">Database prep functions - database persists after use.<br> If you want to reseed, clear first.</p>
+    <form method="post" name="database" class="db">
+        <label for="clear" class="dbLabel">Clear</label>
+        <input type="radio" name="database" value="clear" id="clear" class="dbRB">
+        <label for="seed" class="dbLabel">Seed</label>
+        <input type="radio" name="database" value="seed" id="seed" class="dbRB">
+        <button type="submit">Submit</button>
+
+    </form>
+
+</body>  
+</html>

@@ -1,0 +1,61 @@
+/*Megan Chamberlin -2022*/
+
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2em;
+    background-color: #eeeeee;
+    color: black;
+    padding-top: 5%;
+    
+}
+
+a:link{
+    text-decoration: none; 
+    color: black;
+}
+nav #icon{
+    margin:0;
+    padding:0;
+}
+
+nav{
+    position: absolute;
+    top:0;
+    left: 0;
+    overflow: hidden;
+    list-style-type: none;
+    display: flex;
+    height: 100px;
+    width:100%;
+    background-color: #b3282d; 
+   
+}
+
+nav figure{ /*adjust positioning and spacing of icon*/
+    margin:0%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+nav img{
+    height: 100%; /*adjust height of icon*/
+}
+
+nav a{
+    display: block;
+    color: white;
+    padding: 25px;
+    height: 100px;
+    flex-shrink: 1rem;
+}
+
+#break{
+    min-width:150;
+    flex-grow: 3;
+}
+
+nav a:hover{
+    background-color:#5e1518;
+}
+
+
